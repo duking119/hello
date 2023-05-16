@@ -10,3 +10,7 @@ class Item:
         self.name = name
         self.price = price
         self.quantity = quantity
+        
+
+item1 = Item('MyItem', 500)
+print(item1.name)
