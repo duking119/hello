@@ -10,7 +10,7 @@ class Item:
         assert price >= 0, f'Price {price} must be greater than or equal to zero!'
         assert quantity >= 0, f'Quantity {quantity} must be greater than or equal to zero!'
 
-        self.name = name
+        self.__name = name
         self.price = price
         self.quantity = quantity
 
@@ -23,6 +23,10 @@ class Item:
     # define a representation of items
     def __repr__(self):
         return f'{self.__class__.__name__} ({self.name}, {self.price}, {self.quantity})'
+
+    @property
+    def name(self):
+        return self.__name
 
     @classmethod
     def instantiate_from_csv(cls):
