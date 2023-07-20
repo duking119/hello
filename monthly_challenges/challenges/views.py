@@ -17,20 +17,22 @@ monthly_challenge_dict = {
     'december': 'Learn django every day!',
 }
 
+
 def index(request):
     list_items = ""
     months = list(monthly_challenge_dict.keys())
-    
+
     for month in months:
         captalized_month = month.capitalize()
         month_path = reverse("month-challenge", args=[month])
         list_items += f"<li><a href='{month_path}'>{captalized_month}</a></li>"
-    
 
     response_data = f"<url>{list_items}</url>"
     return HttpResponse(response_data)
 
 # Create your views here.
+
+
 def monthly_challenge_number(request, month):
     months = list(monthly_challenge_dict.keys())
 
@@ -45,7 +47,9 @@ def monthly_challenge_number(request, month):
 def monthly_challenge(request, month):
     try:
         challenge_text = monthly_challenge_dict[month]
-        respose_data = f"<h1>{challenge_text}</h1>"
-        return HttpResponse(respose_data)
+        return render(request, "challenges/challenge.html/",{
+            'text': challenge_text,
+            'month_name': month
+        })
     except:
-        return HttpResponseNotFound("This is not a month")
+        return HttpResponseNotFound("<h1>This is not a month</h1>")
