@@ -14,21 +14,24 @@ monthly_challenge_dict = {
     'september': 'Not eat meat for a month every day!',
     'october': 'Sleep at least 8 hour every day!',
     'november': 'Walk at least 20 min every day!',
-    'december': 'Learn django every day!',
+    'december': None
 }
 
 
 def index(request):
-    list_items = ""
     months = list(monthly_challenge_dict.keys())
+    
+    return render(request,"challenges/index.html",{
+        "months":months,
+    })
 
-    for month in months:
-        captalized_month = month.capitalize()
-        month_path = reverse("month-challenge", args=[month])
-        list_items += f"<li><a href='{month_path}'>{captalized_month}</a></li>"
+    # for month in months:
+    #     captalized_month = month.capitalize()
+    #     month_path = reverse("month-challenge", args=[month])
+    #     list_items += f"<li><a href='{month_path}'>{captalized_month}</a></li>"
 
-    response_data = f"<url>{list_items}</url>"
-    return HttpResponse(response_data)
+    # response_data = f"<url>{list_items}</url>"
+    # return HttpResponse(response_data)
 
 # Create your views here.
 
