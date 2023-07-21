@@ -55,7 +55,9 @@ ROOT_URLCONF = 'monthly_challenges.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / "templates",   # 让app template html 能够索引到project templates文件夹
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
