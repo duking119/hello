@@ -1,6 +1,7 @@
-from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
+from django.http import Http404, HttpResponseNotFound, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
+from django.template.loader import render_to_string
 
 monthly_challenge_dict = {
     'january': 'Not eat meat for a month every day!',
@@ -55,4 +56,5 @@ def monthly_challenge(request, month):
             'month_name': month
         })
     except:
-        return HttpResponseNotFound("<h1>This is not a month</h1>")
+        response_data = render_to_string('404.html')
+        return HttpResponseNotFound(response_data)
